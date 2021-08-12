@@ -23,7 +23,3 @@ fun Application.configureDatabase(){
         SchemaUtils.create(Todos)
     }
 }
-
-fun seedDatabase() {
-
-}
