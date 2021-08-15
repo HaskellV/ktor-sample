@@ -1,12 +1,11 @@
-package me.haskellv.plugins
+package me.haskellv.todo.plugins
 
-import io.ktor.routing.*
-import io.ktor.http.*
 import io.ktor.application.*
 import io.ktor.freemarker.*
-import io.ktor.response.*
 import io.ktor.request.*
-import me.haskellv.database.entities.Todo
+import io.ktor.response.*
+import io.ktor.routing.*
+import me.haskellv.todo.database.entities.Todo
 import org.jetbrains.exposed.sql.transactions.transaction
 
 fun Application.configureRouting() {
@@ -17,11 +16,11 @@ fun Application.configureRouting() {
                 Todo.all().toList()
             }
 
-             call.respond(FreeMarkerContent("home.ftl", mapOf("todos" to todos)))
+            call.respond(FreeMarkerContent("home.ftl", mapOf("todos" to todos)))
         }
 
         get("/dodaj") {
-            call.respond(FreeMarkerContent("add.ftl", mapOf(null to null)))
+            call.respond(FreeMarkerContent("add.ftl", emptyMap<Any, Any>()))
         }
 
         post("/dodaj") {
@@ -29,7 +28,7 @@ fun Application.configureRouting() {
 
             transaction {
                 Todo.new {
-                    title  = formData["title"].toString()
+                    title = formData["title"].toString()
                     status = false
                 }
             }
@@ -40,7 +39,7 @@ fun Application.configureRouting() {
         get("/ukonczono") {
             val id = call.request.queryParameters["id"]?.toInt()
 
-            if(id == null) {
+            if (id == null) {
                 call.respondRedirect("/")
                 return@get
             }
@@ -55,7 +54,7 @@ fun Application.configureRouting() {
         get("usun") {
             val id = call.request.queryParameters["id"]?.toInt()
 
-            if(id == null) {
+            if (id == null) {
                 call.respondRedirect("/")
                 return@get
             }

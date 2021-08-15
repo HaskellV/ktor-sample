@@ -1,11 +1,8 @@
-package me.haskellv.plugins
+package me.haskellv.todo.plugins
 
-import freemarker.cache.*
-import io.ktor.freemarker.*
+import freemarker.cache.ClassTemplateLoader
 import io.ktor.application.*
-import io.ktor.response.*
-import io.ktor.request.*
-import io.ktor.routing.*
+import io.ktor.freemarker.*
 
 fun Application.configureTemplating() {
     install(FreeMarker) {

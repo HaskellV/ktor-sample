@@ -1,18 +1,9 @@
 package me.haskellv
 
-import io.ktor.routing.*
 import io.ktor.http.*
-import io.ktor.jackson.*
-import com.fasterxml.jackson.databind.*
-import io.ktor.features.*
-import freemarker.cache.*
-import io.ktor.freemarker.*
-import io.ktor.application.*
-import io.ktor.response.*
-import io.ktor.request.*
 import kotlin.test.*
 import io.ktor.server.testing.*
-import me.haskellv.plugins.*
+import me.haskellv.todo.plugins.*
 
 class ApplicationTest {
     @Test

@@ -1,19 +1,19 @@
-package me.haskellv.plugins
+package me.haskellv.todo.plugins
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
 import io.ktor.application.*
-import me.haskellv.database.tables.Todos
+import me.haskellv.todo.database.tables.Todos
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
 
-fun Application.configureDatabase(){
+fun Application.configureDatabase() {
     val config = HikariConfig().apply {
-        jdbcUrl         = "jdbc:mysql://localhost/ktor"
+        jdbcUrl = "jdbc:mysql://localhost/ktor"
         driverClassName = "com.mysql.cj.jdbc.Driver"
-        username        = "root"
-        password        = "root"
+        username = "root"
+        password = "root"
         maximumPoolSize = 10
     }
     val dataSource = HikariDataSource(config)
